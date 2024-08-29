@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+// Маршрут для загрузки изображения
+Route::get('/upload-form', function () {
+    return view('upload'); // Показываем форму загрузки
+});
+
+Route::post('/upload-image', [ImageController::class, 'upload']); // Загружаем и обрабатываем изображение
