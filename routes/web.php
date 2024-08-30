@@ -19,8 +19,8 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {return view('welcome');});
 Route::get('/upload-form', function () {return view('upload'); });
-//Route::post('/upload-image', [ImageController::class, 'upload'])->middleware(['auth.token']);
-Route::post('/upload-image', [ImageController::class, 'upload']); //for heroku only
+Route::post('/upload-image', [ImageController::class, 'upload'])->middleware(['auth.token']);
+//Route::post('/upload-image', [ImageController::class, 'upload']); //for heroku only
 
 
 Route::get('/users', function () {
