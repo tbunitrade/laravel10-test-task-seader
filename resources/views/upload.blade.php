@@ -10,7 +10,7 @@
 <button id="load-more" onclick="loadMoreUsers()">Show more</button>
 
 <h1>Upload Image</h1>
-<form action="/upload-image" method="post" enctype="multipart/form-data">
+<form action="/upload-image" method="POST" enctype="multipart/form-data">
     @csrf
     <input type="file" name="image" required>
     <button type="submit">Upload</button>
