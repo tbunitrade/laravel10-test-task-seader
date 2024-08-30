@@ -18,32 +18,9 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {return view('welcome');});
-// Маршрут для загрузки изображения
-// Показываем форму загрузки
 Route::get('/upload-form', function () {return view('upload'); });
-
-//Route::post('/upload-image', [ImageController::class, 'upload']); // Загружаем и обрабатываем изображение
-Route::post('/upload-image', [ImageController::class, 'upload'])->middleware(['auth.token']);
-
-//Route::get('/test-api-key', function () {
-//    return response()->json(['api_key' => env('TINIFY_API_KEY')]);
-//});
-//
-//Route::get('/test-env', function () {
-//    Log::info('Environment variables', $_ENV);
-//    return response()->json(['message' => 'Check logs for environment variables.']);
-//});
-//
-//Route::post('/test-upload', function (Illuminate\Http\Request $request) {
-//    $token = $request->header('X-CSRF-TOKEN');
-//    Log::info('Received token:', ['token' => $token]);
-//    return response()->json([
-//        'message' => 'Received',
-//        'token' => $token,
-//        'api_key' => env('TINIFY_API_KEY'),
-//    ]);
-//});
-
+//Route::post('/upload-image', [ImageController::class, 'upload'])->middleware(['auth.token']);
+Route::post('/upload-image', [ImageController::class, 'upload']); //for heroku only
 
 
 Route::get('/users', function () {
@@ -51,8 +28,6 @@ Route::get('/users', function () {
     return view('users');
 });
 
-//Route::get('/api/users', [UserController::class, 'index']);
-//Route::post('/api/users', [UserController::class, 'store']);
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
