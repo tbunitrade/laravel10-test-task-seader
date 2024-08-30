@@ -13,6 +13,10 @@ class VerifyAuthToken
         $token = $request->header('Authorization');
         $validToken = env('AUTH_TOKEN');
 
+
+        \Log::info('Received Token:', ['token' => $token]);
+        \Log::info('Expected Token:', ['token' => $validToken]);
+
         if ($token !== $validToken) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
