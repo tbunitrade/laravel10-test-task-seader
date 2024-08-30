@@ -10,7 +10,7 @@
 <button id="load-more" onclick="loadMoreUsers()">Show more</button>
 
 <h1>Upload Image</h1>
-<form action="/upload-image" method="POST" enctype="multipart/form-data">
+<form id="uploadImageForm" enctype="multipart/form-data">
     @csrf
     <input type="file" name="image" required>
     <button type="submit">Upload</button>
@@ -67,21 +67,50 @@
                 password: document.querySelector('input[name="password"]').value
             })
         })
-        .then(response => {
-            if (!response.ok) {
-                return response.json().then(error => Promise.reject(error));
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (data.success) {
-                alert(data.success);
-            } else {
-                alert('Error adding user: ' + (data.error || 'Undefined error.'));
-            }
-        })
-        .catch(error => console.error('Error:', error));
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(error => Promise.reject(error));
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert(data.success);
+                } else {
+                    alert('Error adding user: ' + (data.error || 'Undefined error.'));
+                }
+            })
+            .catch(error => console.error('Error:', error));
     });
+
+    // Обработка отправки формы загрузки изображения
+    document.getElementById('uploadImageForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+
+        fetch('/upload-image', {
+            method: 'POST',
+            headers: {
+                'Authorization': '3BbCgUCgAaEnR0b04bc23NpmE9o1fYlL'
+            },
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(error => Promise.reject(error));
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert(data.success);
+                } else {
+                    alert('Error uploading image: ' + (data.error || 'Undefined error.'));
+                }
+            })
+            .catch(error => console.error('Error uploading image:', error));
+    });
+
 </script>
 </body>
 </html>
