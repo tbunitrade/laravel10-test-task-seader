@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://polar-garden-92808-17768a44f0f1.herokuapp.com'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
